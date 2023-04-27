@@ -1,11 +1,14 @@
+using ETrade.Dal;
+using ETrade.UOW;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-//builder.Services.AddDbContext<Context>(options =>
-//		options.UseSqlServer(builder.Configuration.GetConnectionString("Personel")));
+builder.Services.AddDbContext<Context>(options =>
+		options.UseSqlServer(builder.Configuration.GetConnectionString("Personel")));
+builder.Services.AddScoped<IUow, Uow>();
 
 var app = builder.Build();
 

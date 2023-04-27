@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ETrade.Dal
 {
-	public class Context
+	public class Context : DbContext
 	{
 		//public Context(DbContextOptions<Context> op) : base(op)
 		//{
