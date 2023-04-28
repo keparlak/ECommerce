@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ETrade.Dal;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,75 +8,72 @@ using System.Threading.Tasks;
 
 namespace ETrade.Core
 {
-	public class BaseRepository<T> : IBaseRepository<T> where T : class
-	{
-		private readonly Context context;
+    public class BaseRepository<T> : IBaseRepository<T> where T : class
+    {
+        private readonly Context context;
 
-		public BaseRepository(Context context)
-		{
-			this.context = context;
-		}
+        public BaseRepository(Context context)
+        {
+            this.context = context;
+        }
 
-		public bool Add(T entity)
-		{
-			try
-			{
-				Set().Add(entity);
-				return true;
-			}
-			catch (Exception)
-			{
+        public bool Add(T entity)
+        {
+            try
+            {
+                Set().Add(entity);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
 
-				return false;
-			}
-		}
+        public bool Delete(T entity)
+        {
+            try
+            {
+                Set().Remove(entity);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
 
-		public bool Delete(T entity)
-		{
-			try
-			{
-				Set().Remove(entity);
-				return true;
-			}
-			catch (Exception)
-			{
+        public T Find(int id)
+        {
+            return Set().Find(id);
+        }
 
-				return false;
-			}
-		}
+        public T Find(Guid Id)
+        {
+            return Set().Find(Id);
+        }
 
-		public T Find(int id)
-		{
-			return Set().Find(id);
-		}
+        public List<T> List()
+        {
+            return Set().ToList();
+        }
 
-		public T Find(Guid Id)
-		{
-			return Set().Find(Id);
-		}
+        public DbSet<T> Set()
+        {
+            return context.Set<T>();
+        }
 
-		public List<T> List()
-		{
-			return Set().ToList();
-		}
-
-		public DbSet<T> Set()
-		{
-			return context.Set<T>();
-		}
-
-		public bool Update(T entity)
-		{
-			try
-			{
-				Set().Update(entity);
-				return true;
-			}
-			catch (Exception)
-			{
-
-				return false;
-			}
-		}
-	}
+        public bool Update(T entity)
+        {
+            try
+            {
+                Set().Update(entity);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+    }
 }

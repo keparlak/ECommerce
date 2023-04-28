@@ -4,29 +4,182 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ETrade.UI</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+@*    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/ETrade.UI.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ETrade.UI.styles.css" asp-append-version="true" />*@
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ETrade.UI</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        {/* navbar */}
+        <nav className="flex justify-between bg-neutral-900 text-neutral-100">
+            <div className="px-5 xl:px-12 py-6 flex w-full items-center">
+                <a to="/" className="text-3xl font-bold font-heading">
+                <img className="h-9" src="./logo.png" alt="logo" />
+                </a>
+                {/* Nav Links */}
+                <ul className="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
+                    <li>
+                        <a to="/"
+                              className="px-3 py-2 hover:text-neutral-200 hover:bg-neutral-800 rounded-lg">
+                        Home
+                        </a>
+                    </li>
+                    <li>
+                        <a to="/"
+                              className="px-3 py-2 hover:text-neutral-200 hover:bg-neutral-800 rounded-lg">
+                        Categories
+                        </a>
+                    </li>
+                    <li>
+                        <a to="/"
+                              className="px-3 py-2 hover:text-neutral-200 hover:bg-neutral-800 rounded-lg">
+                        Collections
+                        </a>
+                    </li>
+                    <li>
+                        <a to="/"
+                              className="px-3 py-2 hover:text-neutral-200 hover:bg-neutral-800 rounded-lg">
+                        Contact Us
+                        </a>
+                    </li>
+                </ul>
+                {/* Header Icons */}
+                <div className="hidden xl:flex items-center space-x-5">
+                    <a to="liked" className="hover:text-neutral-200">
+                    <HeartIcon className="h-6 w-6" />
+                    </a>
+                    <a to="/sepet"
+                          className="flex items-center hover:text-neutral-200">
+                    <ShoppingBagIcon className="h-6 w-6" />
+                    <span className="flex absolute place-content-center -mt-5 ml-4">
+                        <span className="animate-ping absolute top-[2px] inline-flex h-3 w-3 rounded-full bg-orange-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-4 w-4 bg-orange-500 text-[9px] place-items-center place-content-center font-bold">
+                            {cartItems.length}
+                        </span>
+                    </span>
+                    </a>
+                    {/* Sign In / Register      */}
+                    {currentUser ? (
+                    <>
+                    <button className="flex flex-col relative"
+                            onClick={showDropdown}>
+                        <div className="flex place-items-center">
+                            <img className="h-8 w-8 rounded-full"
+                                 src="https://randomuser.me/api/portraits/men/25.jpg"
+                                 alt="" />
+                            <div className="ml-3">
+                                <p className="text-sm text-left font-medium text-neutral-100">
+                                    {currentUser.name}
+                                </p>
+                                <p className="text-sm text-slate-500 truncate">
+                                    {currentUser.mail}
+                                </p>
+                            </div>
+                        </div>
+                        <ul ref={btnRef}
+                            className="w-full opacity-0 transition-opacity  duration-300 ease-in-out absolute p-2 top-10 shadow-xl overflow-hidden rounded-lg z-10 text-neutral-900 bg-neutral-100">
+                            {currentUser.isAdmin ? (
+                            <li>
+                                <a to="admin"
+                                      className="py-2 px-6 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
+                                Admin
+                                </a>
+                            </li>
+                            ) : (
+                            ""
+                            )}
+                            <a to="myorders"
+                                  className="p-2 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
+                            Siparişlerim
+                            </a>
+
+                            <span className="p-2 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100"
+                                  onClick={logoutHandler}>
+                                Logout
+                            </span>
+                        </ul>
+                    </button>
+                    </>
+                    ) : (
+                    <>
+                    <a to="/login"
+                          className="flex items-center gap-2 hover:text-neutral-200">
+                    <UserCircleIcon className="h-6 w-6 hover:text-neutral-200" />
+                    Login
+                    </a>
+                    </>
+                    )}
+                </div>
+            </div>
+            {/* Responsive navbar */}
+            <a to="/sepet" className="xl:hidden flex mr-6 items-center">
+            <ShoppingBagIcon className="h-6 w-6 hover:text-neutral-200" />
+            <span className="flex absolute -mt-5 ml-4">
+                <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-orange-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-500 place-content-center font-bold text-[9px]">
+                    {cartItems.length}
+                </span>
+            </span>
+            </a>
+            <div className="navbar-burger self-center mr-12 xl:hidden">
+                {currentUser ? (
+                <>
+                <button className="flex flex-col relative" onClick={showDropdown}>
+                    <div className="flex place-items-center">
+                        <img className="w-8 rounded-full"
+                             src="https://randomuser.me/api/portraits/men/25.jpg"
+                             alt="" />
+                    </div>
+
+                    <ul ref={btn2Ref}
+                        className="opacity-0 transition-opacity duration-300 ease-in-out min-w-max absolute p-2 right-0 top-10 shadow-xl overflow-hidden rounded-lg z-10 text-neutral-900 bg-neutral-100">
+                        <li>
+                            <div className="mb-3 py-2 px-6  rounded block bg-neutral-900 text-neutral-100">
+                                <p className="text-xs text-left font-bold text-neutral-100">
+                                    {currentUser.name}
+                                </p>
+                                <p className="text-xs text-slate-500 truncate">
+                                    {currentUser.mail}
+                                </p>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        {currentUser.isAdmin ? (
+                        <li>
+                            <a to="admin"
+                                  className="py-2 px-6 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
+                            Admin
+                            </a>
+                        </li>
+                        ) : (
+                        ""
+                        )}
+                        <li>
+                            <a to="myorders"
+                                  className="py-2 px-6 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
+                            Siparişlerim
+                            </a>
+                        </li>
+                        <li className="py-2 px-6 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
+                            <a to="liked" className="hover:text-neutral-200">
+                            Favoriler
+                            </a>
+                        </li>
+                        <li>
+                            <span className="p-2 px-6  text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100"
+                                  onClick={logoutHandler}>
+                                Logout
+                            </span>
                         </li>
                     </ul>
-                </div>
+                </button>
+                </>
+                ) : (
+                <>
+                <Bars3Icon className="h-6 w-6 hover:text-neutral-200" />
+                </>
+                )}
             </div>
         </nav>
     </header>
