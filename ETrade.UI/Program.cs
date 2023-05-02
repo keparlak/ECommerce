@@ -1,4 +1,6 @@
 using ETrade.Dal;
+using ETrade.Rep.Abstracts;
+using ETrade.Rep.Concretes;
 using ETrade.UOW;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +11,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Context>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("Etrade")));
 builder.Services.AddScoped<IUow, Uow>();
+builder.Services.AddScoped<IFoodsRepos, FoodsRepos>();
 
 var app = builder.Build();
 

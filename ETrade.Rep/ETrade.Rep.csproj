@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Abstracts\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ETrade.Core\ETrade.Core.csproj" />
     <ProjectReference Include="..\ETrade.Dal\ETrade.Dal.csproj" />
     <ProjectReference Include="..\ETrade.Ent\ETrade.Ent.csproj" />
