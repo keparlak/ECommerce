@@ -14,7 +14,11 @@ namespace ETrade.Ent
         public string Description { get; set; }
         public Guid CategoryId { get; set; }
         public Guid PropertyId { get; set; }
+
+        [ForeignKey("CategoryId")]
+        public Categories Categories { get; set; }
+
         public ICollection<Properties> Properties { get; set; }
-        public ICollection<Categories> Categories { get; set; }
+        public ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

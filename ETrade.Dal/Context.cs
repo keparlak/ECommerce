@@ -14,6 +14,12 @@ namespace ETrade.Dal
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OrderDetails>()
+                .HasKey(o => new { o.OrderId, o.FoodId });
+        }
+
         // DbSets
 
         public DbSet<Users> Users { get; set; }
@@ -23,6 +29,5 @@ namespace ETrade.Dal
         public DbSet<Categories> Categories { get; set; }
         public DbSet<Orders> Orders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
-        public DbSet<ShippingAddresses> ShippingAddresses { get; set; }
     }
 }

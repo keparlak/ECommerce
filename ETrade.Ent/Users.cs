@@ -13,5 +13,7 @@ namespace ETrade.Ent
         public string Password { get; set; }
         public bool isAdmin { get; set; }
         public string ShippingAddress { get; set; }
+
+        public ICollection<Orders> Orders { get; set; }
     }
 }
