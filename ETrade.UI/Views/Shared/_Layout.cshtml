@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/ETrade.UI.styles.css" asp-append-version="true" />*@
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     <script>
-        function showDropdown()  {
+        function showDropdown() {
             var toggleNavbar = document.getElementById("navbarToggle");
             var toggleNavbar = document.getElementById("navbarToggle2");
             navbarToggle.classList.toggle("opacity-0");
@@ -56,7 +56,8 @@
                     <a class="hover:text-neutral-200" href="/liked"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-6 w-6"><path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z"></path></svg></a>
                     <a class="flex items-center hover:text-neutral-200" href="/sepet">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-6 w-6"><path fill-rule="evenodd" d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 004.25 22.5h15.5a1.875 1.875 0 001.865-2.071l-1.263-12a1.875 1.875 0 00-1.865-1.679H16.5V6a4.5 4.5 0 10-9 0zM12 3a3 3 0 00-3 3v.75h6V6a3 3 0 00-3-3zm-3 8.25a3 3 0 106 0v-.75a.75.75 0 011.5 0v.75a4.5 4.5 0 11-9 0v-.75a.75.75 0 011.5 0v.75z" clip-rule="evenodd"></path></svg>
-                        <span class="flex absolute place-content-center -mt-5 ml-4"><span class="animate-ping absolute top-[2px] inline-flex h-3 w-3 rounded-full bg-orange-400 opacity-75"></span><span class="relative inline-flex rounded-full h-4 w-4 bg-orange-500 text-[9px] place-items-center place-content-center font-bold">0</span></span></a>
+                        <span class="flex absolute place-content-center -mt-5 ml-4"><span class="animate-ping absolute top-[2px] inline-flex h-3 w-3 rounded-full bg-orange-400 opacity-75"></span><span class="relative inline-flex rounded-full h-4 w-4 bg-orange-500 text-[9px] place-items-center place-content-center font-bold">0</span></span>
+                    </a>
                     <button onclick="showDropdown()" class="flex flex-col relative">
                         <div class="flex place-items-center">
                             <img class="h-8 w-8 rounded-full"
@@ -74,7 +75,7 @@
                         <ul id="navbarToggle" class="w-full opacity-0 transition-opacity  duration-300 ease-in-out absolute p-2 top-10 shadow-xl overflow-hidden rounded-lg z-10 text-neutral-900 bg-neutral-100">
 
                             <li>
-                                <a to="admin"
+                                <a href="/Admin/Admin"
                                    class="py-2 px-6 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
                                     Admin
                                 </a>
@@ -95,12 +96,9 @@
                         <UserCircleIcon class="h-6 w-6 hover:text-neutral-200" />
                         Login
                     </a>
-                    </>
                 </div>
             </div>
-<a class="flex items-center hover:text-neutral-200" href="/sepet">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-6 w-6"><path fill-rule="evenodd" d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 004.25 22.5h15.5a1.875 1.875 0 001.865-2.071l-1.263-12a1.875 1.875 0 00-1.865-1.679H16.5V6a4.5 4.5 0 10-9 0zM12 3a3 3 0 00-3 3v.75h6V6a3 3 0 00-3-3zm-3 8.25a3 3 0 106 0v-.75a.75.75 0 011.5 0v.75a4.5 4.5 0 11-9 0v-.75a.75.75 0 011.5 0v.75z" clip-rule="evenodd"></path></svg>
-                        <span class="flex absolute place-content-center -mt-5 ml-4"><span class="animate-ping absolute top-[2px] inline-flex h-3 w-3 rounded-full bg-orange-400 opacity-75"></span><span class="relative inline-flex rounded-full h-4 w-4 bg-orange-500 text-[9px] place-items-center place-content-center font-bold">0</span></span></a>
+            <a class="xl:hidden flex mr-6 items-center" href="/sepet"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-6 w-6 hover:text-neutral-200"><path fill-rule="evenodd" d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 004.25 22.5h15.5a1.875 1.875 0 001.865-2.071l-1.263-12a1.875 1.875 0 00-1.865-1.679H16.5V6a4.5 4.5 0 10-9 0zM12 3a3 3 0 00-3 3v.75h6V6a3 3 0 00-3-3zm-3 8.25a3 3 0 106 0v-.75a.75.75 0 011.5 0v.75a4.5 4.5 0 11-9 0v-.75a.75.75 0 011.5 0v.75z" clip-rule="evenodd"></path></svg><span class="flex absolute -mt-5 ml-4"><span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-orange-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-orange-500 place-content-center font-bold text-[9px]">0</span></span></a>
             <div class="navbar-burger self-center mr-12 xl:hidden">
                 <button onclick="showDropdown()" class="flex flex-col relative">
                     <div class="flex place-items-center">
@@ -122,7 +120,7 @@
                             </div>
                         </li>
                         <li>
-                            <a to="admin"
+                            <a href="/Admin/Admin"
                                class="py-2 px-6 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
                                 Admin
                             </a>
@@ -146,7 +144,10 @@
                         </li>
                     </ul>
                 </button>
-                <Bars3Icon class="h-6 w-6 hover:text-neutral-200" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 hover:text-neutral-200">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+
             </div>
         </nav>
     </header>

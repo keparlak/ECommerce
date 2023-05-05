@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model ETrade.UI.Models.ViewModel.CategoriesModel
+@{ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<h1>@Model.Head</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Categories.CategoryId" />
+            <div class="form-group">
+                <label asp-for="Categories.CategoryId" class="control-label"><h4>Category Name</h4></label>
+                <input asp-for="Categories.CategoryName" class="form-control" />
+                <span asp-validation-for="Categories.CategoryName" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <input type="hidden" name="@Model.Categories.Id" class="form-control" />
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="@Model.Text" class="@Model.Class" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="List" class="btn btn-outline-warning">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

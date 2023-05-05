@@ -24,7 +24,7 @@ namespace ETrade.Dal.Migrations
 
             modelBuilder.Entity("ETrade.Ent.Categories", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -38,14 +38,14 @@ namespace ETrade.Dal.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("ETrade.Ent.Foods", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("FoodId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -67,13 +67,10 @@ namespace ETrade.Dal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("PropertyId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("FoodId");
 
                     b.HasIndex("CategoryId");
 
@@ -88,14 +85,17 @@ namespace ETrade.Dal.Migrations
                     b.Property<Guid>("FoodId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<decimal>("UnitPrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("OrderId", "FoodId");
 
@@ -106,7 +106,7 @@ namespace ETrade.Dal.Migrations
 
             modelBuilder.Entity("ETrade.Ent.Orders", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("OrderId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -115,6 +115,10 @@ namespace ETrade.Dal.Migrations
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ShippingAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
@@ -128,7 +132,7 @@ namespace ETrade.Dal.Migrations
                     b.Property<bool>("isDelivered")
                         .HasColumnType("bit");
 
-                    b.HasKey("Id");
+                    b.HasKey("OrderId");
 
                     b.HasIndex("UserId");
 
@@ -137,32 +141,37 @@ namespace ETrade.Dal.Migrations
 
             modelBuilder.Entity("ETrade.Ent.Properties", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("PropertyId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Price")
+                    b.Property<Guid>("FoodId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("PropertyName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PropertyName")
+                    b.Property<string>("UnitPrice")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("PropertyId");
+
+                    b.HasIndex("FoodId");
 
                     b.ToTable("Properties");
                 });
 
             modelBuilder.Entity("ETrade.Ent.Users", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -191,24 +200,9 @@ namespace ETrade.Dal.Migrations
                     b.Property<bool>("isAdmin")
                         .HasColumnType("bit");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("FoodsProperties", b =>
-                {
-                    b.Property<Guid>("FoodsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PropertiesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("FoodsId", "PropertiesId");
-
-                    b.HasIndex("PropertiesId");
-
-                    b.ToTable("FoodsProperties");
                 });
 
             modelBuilder.Entity("ETrade.Ent.Foods", b =>
@@ -231,7 +225,7 @@ namespace ETrade.Dal.Migrations
                         .IsRequired();
 
                     b.HasOne("ETrade.Ent.Orders", "Orders")
-                        .WithMany()
+                        .WithMany("OrderDetails")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -252,19 +246,15 @@ namespace ETrade.Dal.Migrations
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("FoodsProperties", b =>
+            modelBuilder.Entity("ETrade.Ent.Properties", b =>
                 {
-                    b.HasOne("ETrade.Ent.Foods", null)
-                        .WithMany()
-                        .HasForeignKey("FoodsId")
+                    b.HasOne("ETrade.Ent.Foods", "Foods")
+                        .WithMany("Properties")
+                        .HasForeignKey("FoodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ETrade.Ent.Properties", null)
-                        .WithMany()
-                        .HasForeignKey("PropertiesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Foods");
                 });
 
             modelBuilder.Entity("ETrade.Ent.Categories", b =>
@@ -273,6 +263,13 @@ namespace ETrade.Dal.Migrations
                 });
 
             modelBuilder.Entity("ETrade.Ent.Foods", b =>
+                {
+                    b.Navigation("OrderDetails");
+
+                    b.Navigation("Properties");
+                });
+
+            modelBuilder.Entity("ETrade.Ent.Orders", b =>
                 {
                     b.Navigation("OrderDetails");
                 });

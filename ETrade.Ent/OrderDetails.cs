@@ -8,11 +8,8 @@ using System.Threading.Tasks;
 
 namespace ETrade.Ent
 {
-    public class OrderDetails
+    public class OrderDetails : Base
     {
-        [Key]
-        public Guid Id { get; set; }
-
         public Guid FoodId { get; set; }
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }

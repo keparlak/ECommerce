@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace ETrade.UOW
 {
-    public interface IUow
-    {
-        public IFoodsRepos foodsRepos { get; }
-        //public IFoodRepos categoryRepos { get; }
-        //public IFoodRepos orderDetailRepos { get; }
-        //public IFoodRepos propertyRepos { get; }
-        //public IFoodRepos userRepos { get; }
-        //public IFoodRepos orderRepos { get; }
+	public interface IUow
+	{
+		public IFoodRepository FoodRepository { get; }
+		public ICategoryRepository CategoryRepository { get; }
+		public IOrderRepository OrderRepository { get; }
+		public IPropertyRepository PropertyRepository { get; }
+		public IUserRepository UserRepository { get; }
+		public IOrderDetailRepository OrderDetailRepository { get; }
 
-        void Commit();
-    }
+		void Commit();
+	}
 }

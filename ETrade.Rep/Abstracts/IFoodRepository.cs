@@ -1,4 +1,5 @@
 ﻿using ETrade.Core;
+using ETrade.DTO;
 using ETrade.Ent;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,6 @@ namespace ETrade.Rep.Abstracts
 {
     public interface IFoodRepository : IBaseRepository<Foods>
     {
-        List<Foods> GetFoods();
+        List<FoodDTO> GetFoods();
     }
 }

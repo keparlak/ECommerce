@@ -8,21 +8,49 @@ using System.Threading.Tasks;
 
 namespace ETrade.UOW
 {
-    public class Uow : IUow
-    {
-        private readonly Context context;
+	public class Uow : IUow
+	{
+		public readonly Context context;
+		public readonly IFoodRepository foodRepository;
+		public readonly IOrderRepository orderRepository;
+		public readonly IOrderDetailRepository orderDetailRepository;
+		public readonly IUserRepository userRepository;
+		public readonly IPropertyRepository propertyRepository;
+		public readonly ICategoryRepository categoryRepository;
 
-        public IFoodsRepos foodsRepos { get; }
+		public Uow(Context context, IFoodRepository foodRepository, IOrderRepository orderRepository, IOrderDetailRepository orderDetailRepository, IUserRepository userRepository, IPropertyRepository propertyRepository, ICategoryRepository categoryRepository)
+		{
+			this.context = context;
+			this.foodRepository = foodRepository;
+			this.orderRepository = orderRepository;
+			this.orderDetailRepository = orderDetailRepository;
+			this.userRepository = userRepository;
+			this.propertyRepository = propertyRepository;
+			this.categoryRepository = categoryRepository;
+			// özelliklerin kendisine atandığı yer
+			CategoryRepository = categoryRepository;
+			OrderRepository = orderRepository;
+			PropertyRepository = propertyRepository;
+			UserRepository = userRepository;
+			OrderDetailRepository = orderDetailRepository;
+			FoodRepository = foodRepository;
+		}
 
-        public Uow(Context context, IFoodsRepos foodRepos)
-        {
-            this.context = context;
-            this.foodsRepos = foodRepos;
-        }
+		public ICategoryRepository CategoryRepository { get; }
 
-        public void Commit()
-        {
-            context.SaveChanges();
-        }
-    }
+		public IOrderRepository OrderRepository { get; }
+
+		public IPropertyRepository PropertyRepository { get; }
+
+		public IUserRepository UserRepository { get; }
+
+		public IOrderDetailRepository OrderDetailRepository { get; }
+
+		public IFoodRepository FoodRepository { get; }
+
+		public void Commit()
+		{
+			context.SaveChanges();
+		}
+	}
 }

@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace ETrade.Rep.Abstracts
 {
-    public interface IPropertyRepository : IBaseRepository<Properties>
+    public interface IOrderRepository : IBaseRepository<Orders>
     {
-        List<Properties> GetProperties();
+        //List<Orders> GetOrders();
     }
 }

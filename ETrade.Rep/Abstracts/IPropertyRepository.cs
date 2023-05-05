@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ETrade.Core;
+using ETrade.DTO;
+using ETrade.Ent;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace ETrade.Rep.Abstracts
 {
-    internal class IPropertyRepository
+    public interface IPropertyRepository : IBaseRepository<Properties>
     {
+        List<PropertiesDTO> GetProperties();
     }
 }

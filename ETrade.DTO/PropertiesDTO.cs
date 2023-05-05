@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace ETrade.DTO
 {
-    public class FoodsDTO
+    public class PropertiesDTO
     {
         public Guid Id { get; set; }
-        public string FoodName { get; set; }
-        public string Properties { get; set; }
-        public string CategoryName { get; set; }
+        public string PropertyName { get; set; }
     }
 }
