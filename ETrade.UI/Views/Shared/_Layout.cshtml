@@ -14,8 +14,12 @@
             var toggleNavbar = document.getElementById("navbarToggle2");
             navbarToggle.classList.toggle("opacity-0");
             navbarToggle.classList.toggle("opacity-100");
+            navbarToggle.classList.toggle("hidden");
+            navbarToggle.classList.toggle("block");
             navbarToggle2.classList.toggle("opacity-0");
             navbarToggle2.classList.toggle("opacity-100");
+            navbarToggle2.classList.toggle("hidden");
+            navbarToggle2.classList.toggle("block");
         };
     </script>
 </head>
@@ -34,15 +38,15 @@
                         </a>
                     </li>
                     <li>
-                        <a asp-area="" asp-controller="Foods" asp-action="List"
+                        <a asp-area="" asp-controller="Auth" asp-action="Login"
                            class="px-3 py-2 hover:text-neutral-200 hover:bg-neutral-800 rounded-lg">
-                            Foods
+                            Login
                         </a>
                     </li>
                     <li>
-                        <a asp-area="" asp-controller="Properties" asp-action="List"
+                        <a asp-area="" asp-controller="Auth" asp-action="Register"
                            class="px-3 py-2 hover:text-neutral-200 hover:bg-neutral-800 rounded-lg">
-                            Properties
+                            Register
                         </a>
                     </li>
                     <li>
@@ -72,23 +76,22 @@
                                 </p>
                             </div>
                         </div>
-                        <ul id="navbarToggle" class="w-full opacity-0 transition-opacity  duration-300 ease-in-out absolute p-2 top-10 shadow-xl overflow-hidden rounded-lg z-10 text-neutral-900 bg-neutral-100">
+                        <ul id="navbarToggle" class="w-full hidden opacity-0 transition-opacity  duration-300 ease-in-out absolute p-2 top-10 shadow-xl overflow-hidden rounded-lg z-10 text-neutral-900 bg-neutral-100">
 
                             <li>
-                                <a href="/Admin/Admin"
+                                <a asp-area="" asp-controller="Admin" asp-action="Admin"
                                    class="py-2 px-6 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
                                     Admin
                                 </a>
                             </li>
-                            <a to="myorders"
+                            <a asp-area="" asp-controller="Orders" asp-action="List"
                                class="p-2 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
                                 Siparişlerim
                             </a>
 
-                            <span class="p-2 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100"
-                                  onClick={logoutHandler}>
+                            <a asp-area="" asp-controller="Auth" asp-action="Logout" class="p-2 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
                                 Logout
-                            </span>
+                            </a>
                         </ul>
                     </button>
                     <a to="/login"
@@ -108,7 +111,7 @@
                     </div>
 
                     <ul id="navbarToggle2"
-                        class="opacity-0 transition-opacity duration-300 ease-in-out min-w-max absolute p-2 right-0 top-10 shadow-xl overflow-hidden rounded-lg z-10 text-neutral-900 bg-neutral-100">
+                        class="hidden opacity-0 transition-opacity duration-300 ease-in-out min-w-max absolute p-2 right-0 top-10 shadow-xl overflow-hidden rounded-lg z-10 text-neutral-900 bg-neutral-100">
                         <li>
                             <div class="mb-3 py-2 px-6  rounded block bg-neutral-900 text-neutral-100">
                                 <p class="text-xs text-left font-bold text-neutral-100">
@@ -120,13 +123,13 @@
                             </div>
                         </li>
                         <li>
-                            <a href="/Admin/Admin"
+                            <a asp-area="" asp-controller="Admin" asp-action="Admin"
                                class="py-2 px-6 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
                                 Admin
                             </a>
                         </li>
                         <li>
-                            <a to="myorders"
+                            <a asp-area="" asp-controller="Orders" asp-action="List"
                                class="py-2 px-6 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
                                 Siparişlerim
                             </a>
@@ -137,10 +140,9 @@
                             </a>
                         </li>
                         <li>
-                            <span class="p-2 px-6  text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100"
-                                  onClick={logoutHandler}>
+                            <a asp-area="" asp-controller="Auth" asp-action="Logout" class="p-2 px-6  text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
                                 Logout
-                            </span>
+                            </a>
                         </li>
                     </ul>
                 </button>
@@ -153,7 +155,9 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+            <div class="container w-full mx-auto p-4">
+                    @RenderBody()
+            </div>
         </main>
     </div>
 

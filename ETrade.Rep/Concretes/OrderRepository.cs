@@ -18,13 +18,9 @@ namespace ETrade.Rep.Concretes
         {
         }
 
-        //public List<Orders> GetOrders()
-        //{
-        //return Set().Select(x => new Orders
-        //{
-        //    OrderId = x.OrderId,
-        //    UserId = x.UserId,
-        //}).ToList();
-        //}
+        public List<Orders> GetOrders(Guid Id)
+        {
+            return List().Where(x => x.UserId == Id && x.isDelivered == false).ToList();
+        }
     }
 }
