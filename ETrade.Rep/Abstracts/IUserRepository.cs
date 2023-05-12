@@ -10,7 +10,7 @@ namespace ETrade.Rep.Abstracts
 {
     public interface IUserRepository : IBaseRepository<Users>
     {
-        public bool Login();
+        public Users Login(Users user);
 
         public void Logout();
 

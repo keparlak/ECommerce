@@ -1,4 +1,5 @@
-﻿using ETrade.Core;
+﻿using BCrypt.Net;
+using ETrade.Core;
 using ETrade.Dal;
 using ETrade.Ent;
 using ETrade.Rep.Abstracts;
@@ -16,9 +17,19 @@ namespace ETrade.Rep.Concretes
         {
         }
 
-        public bool Login()
+        public Users Login(Users user)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var loginUser = Find(user.UserId);
+
+                return loginUser;
+            }
+            catch (Exception)
+            {
+                var u = new Users();
+                return u;
+            }
         }
 
         public void Logout()
@@ -30,6 +41,9 @@ namespace ETrade.Rep.Concretes
         {
             try
             {
+                user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+                user.UpdatedAt = DateTime.Now;
+                user.CreatedAt = DateTime.Now;
                 Add(user);
                 return true;
             }

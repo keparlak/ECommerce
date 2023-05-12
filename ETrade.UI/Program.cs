@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession();
 builder.Services.AddDbContext<Context>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("Etrade")));
 builder.Services.AddScoped<IUow, Uow>();
@@ -25,6 +26,8 @@ builder.Services.AddScoped<CategoriesModel>();
 builder.Services.AddScoped<PropertiesModel>();
 builder.Services.AddScoped<FoodsModel>();
 
+builder.Services.AddScoped<Users>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -39,7 +42,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseSession();
 app.UseAuthorization();
 
 app.MapControllerRoute(
