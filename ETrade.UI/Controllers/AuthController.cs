@@ -2,7 +2,6 @@
 using ETrade.UI.Session;
 using ETrade.UOW;
 using Microsoft.AspNetCore.Mvc;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ETrade.UI.Controllers
 {

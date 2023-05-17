@@ -1,6 +1,5 @@
 ﻿using ETrade.Ent;
 using ETrade.UI.Models;
-using ETrade.UI.Session;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

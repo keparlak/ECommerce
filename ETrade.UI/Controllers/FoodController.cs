@@ -1,7 +1,4 @@
 ﻿using ETrade.UI.Models.ViewModel;
-using ETrade.DTO;
-
-using ETrade.UI.Models.ViewModel;
 
 using ETrade.UOW;
 using Microsoft.AspNetCore.Mvc;

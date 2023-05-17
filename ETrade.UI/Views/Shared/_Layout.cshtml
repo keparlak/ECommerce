@@ -69,21 +69,26 @@
                             </div>
                         </div>
                         <ul id="navbarToggle" class="w-full hidden opacity-0 transition-opacity  duration-300 ease-in-out absolute p-2 top-10 shadow-xl overflow-hidden rounded-lg z-10 text-neutral-900 bg-neutral-100">
-
+                                @if (SessionData.LoginUser.isAdmin == true)
+                                {
                             <li>
                                 <a asp-area="" asp-controller="Admin" asp-action="Admin"
                                    class="py-2 px-6 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
-                                    Admin
+                                        Admin Dashboard
                                 </a>
                             </li>
+                                }
+                                <li>
                             <a asp-area="" asp-controller="Orders" asp-action="List"
                                class="p-2 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
                                 Siparişlerim
-                            </a>
-
+                                    </a>
+                                </li>
+<li>
                             <a asp-area="" asp-controller="Auth" asp-action="Logout" class="p-2 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
                                 Logout
-                            </a>
+
+                                 </a></li>
                         </ul>
                     </button>
                     }else{
@@ -120,12 +125,14 @@
                                 </p>
                             </div>
                         </li>
+                            @if (SessionData.LoginUser.isAdmin ==true)
+                            {
                         <li>
                             <a asp-area="" asp-controller="Admin" asp-action="Admin"
                                class="py-2 px-6 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
                                 Admin Dashboard
                             </a>
-                        </li>
+                        </li>}
                         <li>
                             <a asp-area="" asp-controller="Orders" asp-action="List"
                                class="py-2 px-6 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
