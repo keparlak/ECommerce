@@ -19,16 +19,23 @@ namespace ETrade.Rep.Concretes
 
         public Users Login(Users user)
         {
+            var dummyUser = new Users();
             try
             {
-                var loginUser = Find(user.UserId);
-
-                return loginUser;
+                var loginUser = Set().FirstOrDefault(x => x.UserName == user.UserName);
+                if (loginUser != null)
+                {
+                    bool verified = BCrypt.Net.BCrypt.Verify(user.Password, loginUser.Password);
+                    if (verified)
+                    {
+                        return loginUser;
+                    }
+                }
+                return dummyUser;
             }
             catch (Exception)
             {
-                var u = new Users();
-                return u;
+                return dummyUser;
             }
         }
 

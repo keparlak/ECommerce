@@ -27,6 +27,8 @@ builder.Services.AddScoped<PropertiesModel>();
 builder.Services.AddScoped<FoodsModel>();
 
 builder.Services.AddScoped<Users>();
+builder.Services.AddScoped<Orders>();
+builder.Services.AddScoped<OrderDetails>();
 
 var app = builder.Build();
 

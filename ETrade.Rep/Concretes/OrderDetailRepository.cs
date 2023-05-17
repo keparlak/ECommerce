@@ -15,5 +15,10 @@ namespace ETrade.Rep.Concretes
         public OrderDetailRepository(Context context) : base(context)
         {
         }
+
+        public List<OrderDetails> GetOrderDetails(Guid Id)
+        {
+            return List().Where(x => x.OrderId == Id).ToList();
+        }
     }
 }

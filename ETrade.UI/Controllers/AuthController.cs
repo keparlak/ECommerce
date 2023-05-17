@@ -36,7 +36,24 @@ namespace ETrade.UI.Controllers
         [HttpPost]
         public IActionResult Login(Users u)
         {
-            SessionHelper.SetObjectAsJson(HttpContext.Session, "user", u);
+            var loginUser = uow.UserRepository.Login(u);
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "user", loginUser);
+            SessionData.LoginUser = loginUser;
+            if (SessionData.LoginUser.isAdmin == true)
+            {
+                return RedirectToAction("Admin", "Admin");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        public IActionResult Logout()
+        {
+            Users users = null;
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "user", user);
+            SessionData.LoginUser = SessionHelper.GetObjectFromJson<Users>(HttpContext.Session, "user");
             return RedirectToAction("Index", "Home");
         }
     }

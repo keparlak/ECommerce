@@ -20,7 +20,8 @@ namespace ETrade.Rep.Concretes
 
         public List<Orders> GetOrders(Guid Id)
         {
-            return List().Where(x => x.UserId == Id && x.isDelivered == false).ToList();
+            var a = List().Where(x => x.UserId == Id && x.isDelivered == false).ToList();
+            return a;
         }
     }
 }

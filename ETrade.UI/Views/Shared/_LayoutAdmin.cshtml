@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using ETrade.UI.Session
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -8,14 +9,27 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ETrade.UI.styles.css" asp-append-version="true" />*@
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-
+    <script>
+        function showDropdown() {
+            var toggleNavbar = document.getElementById("navbarToggle");
+            var toggleNavbar = document.getElementById("navbarToggle2");
+            navbarToggle.classList.toggle("opacity-0");
+            navbarToggle.classList.toggle("opacity-100");
+            navbarToggle.classList.toggle("hidden");
+            navbarToggle.classList.toggle("block");
+            navbarToggle2.classList.toggle("opacity-0");
+            navbarToggle2.classList.toggle("opacity-100");
+            navbarToggle2.classList.toggle("hidden");
+            navbarToggle2.classList.toggle("block");
+        };
+    </script>
 </head>
 <body>
     <header>
         <nav class="flex justify-between bg-neutral-900 text-neutral-100">
             <div class="px-5 xl:px-12 py-6 flex w-full items-center">
                 <a to="/" class="text-3xl font-bold font-heading">
-                    <img class="h-9" src="/logo.png" alt="logo" />
+                    <img class="h-9" src="~/logo.png" alt="logo" />
                 </a>
                 <ul class="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
                     <li>
@@ -53,30 +67,30 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-6 w-6"><path fill-rule="evenodd" d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 004.25 22.5h15.5a1.875 1.875 0 001.865-2.071l-1.263-12a1.875 1.875 0 00-1.865-1.679H16.5V6a4.5 4.5 0 10-9 0zM12 3a3 3 0 00-3 3v.75h6V6a3 3 0 00-3-3zm-3 8.25a3 3 0 106 0v-.75a.75.75 0 011.5 0v.75a4.5 4.5 0 11-9 0v-.75a.75.75 0 011.5 0v.75z" clip-rule="evenodd"></path></svg>
                         <span class="flex absolute place-content-center -mt-5 ml-4"><span class="animate-ping absolute top-[2px] inline-flex h-3 w-3 rounded-full bg-orange-400 opacity-75"></span><span class="relative inline-flex rounded-full h-4 w-4 bg-orange-500 text-[9px] place-items-center place-content-center font-bold">0</span></span>
                     </a>
-                    <button class="flex flex-col relative">
+                    <button onclick="showDropdown()" class="flex flex-col relative">
                         <div class="flex place-items-center">
                             <img class="h-8 w-8 rounded-full"
                                  src="https://randomuser.me/api/portraits/men/25.jpg"
                                  alt="" />
                             <div class="ml-3">
                                 <p class="text-sm text-left font-medium text-neutral-100">
-                                    Kadir
+                                    @SessionData.LoginUser.UserName
                                 </p>
                                 <p class="text-sm text-slate-500 truncate">
-                                    keparlak@gmail.com
+                                    @SessionData.LoginUser.Mail
                                 </p>
                             </div>
                         </div>
-                        <ul ref={btnRef}
-                            class="w-full opacity-0 transition-opacity  duration-300 ease-in-out absolute p-2 top-10 shadow-xl overflow-hidden rounded-lg z-10 text-neutral-900 bg-neutral-100">
+                        <ul id="navbarToggle"
+                            class="w-full hidden opacity-0 transition-opacity  duration-300 ease-in-out absolute p-2 top-10 shadow-xl overflow-hidden rounded-lg z-10 text-neutral-900 bg-neutral-100">
 
                             <li>
-                                <a to="admin"
+                                <a asp-area="" asp-controller="Admin" asp-action="Admin"
                                    class="py-2 px-6 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
-                                    Admin
+                                    Admin Dashboard
                                 </a>
                             </li>
-                            <a to="myorders"
+                            <a asp-area="" asp-controller="Orders" asp-action="List"
                                class="p-2 text-sm rounded block hover:bg-neutral-900 hover:text-neutral-100">
                                 Siparişlerim
                             </a>
@@ -86,12 +100,6 @@
                             </a>
                         </ul>
                     </button>
-                    <a to="/login"
-                       class="flex items-center gap-2 hover:text-neutral-200">
-                        <UserCircleIcon class="h-6 w-6 hover:text-neutral-200" />
-                        Login
-                    </a>
-                    </>
                 </div>
             </div>
             <a to="/sepet" class="xl:hidden flex mr-6 items-center">
@@ -106,13 +114,13 @@
                 </span>
             </a>
             <div class="navbar-burger self-center mr-12 xl:hidden">
-                <button class="flex flex-col relative">
+                <button onclick="showDropdown()" class="flex flex-col relative">
                     <div class="flex place-items-center">
                         <img class="w-8 rounded-full"
                              src="https://randomuser.me/api/portraits/men/25.jpg"
                              alt="" />
                     </div>
-                    <ul class="opacity-0 transition-opacity duration-300 ease-in-out min-w-max absolute p-2 right-0 top-10 shadow-xl overflow-hidden rounded-lg z-10 text-neutral-900 bg-neutral-100">
+                    <ul id="navbarToggle2" class="opacity-0 hidden transition-opacity duration-300 ease-in-out min-w-max absolute p-2 right-0 top-10 shadow-xl overflow-hidden rounded-lg z-10 text-neutral-900 bg-neutral-100">
                         <li>
                             <div class="mb-3 py-2 px-6  rounded block bg-neutral-900 text-neutral-100">
                                 <p class="text-xs text-left font-bold text-neutral-100">
@@ -230,7 +238,7 @@
     <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64">
         <main>
             <div class="pt-6 px-4">
-                <div class="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
+                <div class="w-full grid grid-cols-1 gap-4">
                     @RenderBody()
                 </div>
             </div>

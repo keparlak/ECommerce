@@ -5,7 +5,7 @@ namespace ETrade.UI.Session
 {
     public static class SessionHelper
     {
-        public static Users LoginUser;
+        public static Users LoginUser = null;
 
         public static void SetObjectAsJson(this ISession session, string key, object value)
         {

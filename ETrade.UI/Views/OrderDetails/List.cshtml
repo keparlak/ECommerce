@@ -1,18 +1,18 @@
-﻿@model List<ETrade.Ent.Orders>
+﻿@model List<ETrade.Ent.OrderDetails>
+
 @{
     ViewData["Title"] = "List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
     <div class="mb-4 flex items-center justify-between">
         <div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Orders</h3>
-            <span class="text-base font-normal text-gray-500">This is a list of orders</span>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Order Details</h3>
+            <span class="text-base font-normal text-gray-500">This is a list of order details</span>
         </div>
-        <div class="flex-shrink-0">
+@*        <div class="flex-shrink-0">
             <a asp-action="Create" class="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2">New Orders</a>
-        </div>
+        </div>*@
     </div>
     <div class="flex flex-col mt-8">
         <div class="overflow-x-auto rounded-lg">
@@ -25,10 +25,13 @@
                                     ID
                                 </th>
                                 <th scope="col" class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    OrderDate
+                                    Foods
                                 </th>
                                 <th scope="col" class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Shipping Address
+                                    Foods Properties
+                                </th>
+                                <th scope="col" class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Added Time
                                 </th>
                             </tr>
                         </thead>
@@ -37,13 +40,16 @@
                             {
                                 <tr>
                                     <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                        <a href="/OrderDetails/List/@item.OrderId">aaa</a>
+                                        @item.FoodId
                                     </td>
                                     <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                        @item.CreatedAt
+                                        @item.Foods.FoodName
                                     </td>
                                     <td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                        @item.ShippingAddress
+                                        @item.Foods.Properties
+                                    </td>
+                                    <td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                                        @item.CreatedAt
                                     </td>
                                 </tr>
                             }

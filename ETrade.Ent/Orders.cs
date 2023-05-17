@@ -15,7 +15,6 @@ namespace ETrade.Ent
 
         public Guid UserId { get; set; }
         public decimal TotalPrice { get; set; }
-        public DateTime OrderDate { get; set; }
         public string ShippingAddress { get; set; }
 
         public bool isDelivered { get; set; }

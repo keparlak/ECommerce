@@ -17,10 +17,5 @@ namespace ETrade.UI.Controllers
         {
             return View();
         }
-
-        //public IActionResult List()
-        //{
-        //	//return View(Uow.foodRepos.GetFoods());
-        //}
     }
 }
