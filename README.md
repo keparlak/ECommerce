@@ -1,7 +1,9 @@
 # ECommerce Projesi
 
 Bu proje, E-ticaret alanında bir web uygulamasını temsil etmektedir. İçerisinde HTML, CSS, JavaScript, Tailwind CSS, ASP.NET Entity Framework, .NET Core, ASP.NET MVVM ve N-tier Layered Architecture gibi çeşitli teknolojileri kullanmaktadır.
-
+   ```bash
+   proje hala geliştirme aşamasındadır!
+   ```
 
 ## Özellikler
 
